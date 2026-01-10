@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي الترحيبي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 40px;
+            margin: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2575fc;
+        }
+        
+        .header h1 {
+            color: #2575fc;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .welcome-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-right: 5px solid #6a11cb;
+        }
+        
+        .welcome-section h2 {
+            color: #6a11cb;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .steps-section {
+            background: #f0f7ff;
+            padding: 25px;
+            border-radius: 15px;
+            border-right: 5px solid #2575fc;
+        }
+        
+        .steps-section h2 {
+            color: #2575fc;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .steps-list {
+            list-style-type: none;
+        }
+        
+        .steps-list li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .steps-list li:hover {
+            transform: translateX(10px);
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: #2575fc;
+            color: white;
+            border-radius: 50%;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        
+        .features-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-right: 5px solid #6a11cb;
+        }
+        
+        .features-section h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .feature-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            color: #2575fc;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>مرحباً بك في موقعي!</h1>
+            <p>تم إنشاء هذا الموقع باستخدام Termux على الهاتف الذكي</p>
+        </div>
+        
+        <div class="content">
+            <section class="welcome-section">
+                <h2>أهلاً وسهلاً</h2>
+                <p>هذا موقع ويب ترحيبي تم إنشاؤه بالكامل من هاتفك الذكي باستخدام تطبيق <span class="highlight">Termux</span>. يثبت هذا أنه يمكنك تطوير مواقع الويب حتى من هاتفك دون الحاجة إلى حاسوب!</p>
+                <p>لقد قمت بتنفيذ عدة خطوات لإنشاء هذا الموقع، بدءاً من تثبيت Termux وحتى تشغيل الخادم المحلي.</p>
+            </section>
+            
+            <section class="steps-section">
+                <h2>الخطوات التي قمت بتنفيذها</h2>
+                <ol class="steps-list">
+                    <li><span class="step-number">1</span> تثبيت وتفعيل تطبيق Termux من متجر التطبيقات</li>
+                    <li><span class="step-number">2</span> تحديث وتثبيت الحزم المطلوبة (Node.js، Python، Git)</li>
+                    <li><span class="step-number">3</span> إنشاء مجلد للمشروع وإنشاء ملف HTML</li>
+                    <li><span class="step-number">4</span> كتابة كود HTML وCSS لإنشاء هذا الموقع</li>
+                    <li><span class="step-number">5</span> تشغيل خادم محلي لعرض الموقع</li>
+                </ol>
+            </section>
+            
+            <section class="features-section">
+                <h2>ما يمكنك فعله باستخدام Termux</h2>
+                <div class="features-grid">
+                    <div class="feature-item">تطوير الويب</div>
+                    <div class="feature-item">برمجة بايثون</div>
+                    <div class="feature-item">إدارة الخوادم</div>
+                    <div class="feature-item">أتمتة المهام</div>
+                    <div class="feature-item">تعلم Linux</div>
+                    <div class="feature-item">إدارة Git</div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="footer">
+            <p>تم الإنشاء بواسطة Termux على الهاتف الذكي | تاريخ اليوم: <span id="current-date"></span></p>
+        </div>
+    </div>
+    
+    <script>
+        // عرض التاريخ الحالي
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = now.toLocaleDateString('ar-SA', options);
+        
+        // تأثير بسيط عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.steps-list li');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateX(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
