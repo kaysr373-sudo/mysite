@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>مرحبًا بك</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #5f2cff, #9b5cff);
+      font-family: Tahoma, Arial;
+      color: white;
+      text-align: center;
+    }
+    .box {
+      background: rgba(255,255,255,0.15);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 320px;
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>أهلًا وسهلًا 👋</h1>
+    <p>موقع قيد الإنشاء<br>ترقبوا الجديد قريبًا</p>
+  </div>
+</body>
+</html>
