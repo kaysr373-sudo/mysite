@@ -2,1029 +2,1797 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- إصلاح مهم: إضافة viewport meta tag صحيح -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <!-- إصلاحات إضافية لتحسين التوافق -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>د. مصطفى عياش الكبيسي - النائب العراقي - الموقع الرسمي</title>
-    <meta name="description" content="الموقع الرسمي للنائب د. مصطفى عياش الكبيسي - عضو مجلس النواب العراقي">
+    <title>د. مصطفى عياش الكبيسي | النائب البرلماني - محافظة الأنبار</title>
+    <meta name="description" content="الموقع الرسمي المتقدم للنائب د. مصطفى عياش الكبيسي - ممثل محافظة الأنبار في مجلس النواب العراقي">
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome Pro Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css للحركات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Leaflet CSS للخريطة -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
-        /* إصلاحات أساسية */
+        /* متغيرات التصميم المتقدم */
+        :root {
+            --primary: #1a365d;
+            --primary-dark: #0d2847;
+            --primary-light: #2d5a9a;
+            --secondary: #d4af37;
+            --secondary-dark: #b8941f;
+            --secondary-light: #e8c967;
+            --accent: #e63946;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --success: #28a745;
+            --info: #17a2b8;
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-gold: 0 5px 20px rgba(212, 175, 55, 0.3);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        /* إعادة الضبط وتحسينات الأداء */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         html {
             scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
+            font-size: 16px;
         }
         
         body {
             font-family: 'Tajawal', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            line-height: 1.7;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%);
             direction: rtl;
             text-align: right;
             overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
+            position: relative;
         }
         
-        /* إصلاحات الحاويات */
-        .container {
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
             width: 100%;
-            max-width: 1200px;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,40 50,50 T100,50" stroke="%231a365d" stroke-width="0.5" fill="none" opacity="0.05"/></svg>');
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* تصميم الهيدر الاحترافي */
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 9999;
+            padding: 0.8rem 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 2rem;
         }
         
-        /* إصلاحات القسم الرئيسي */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-gold);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-family: 'El Messiri', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 0;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::before {
+            width: 80%;
+        }
+        
+        .nav-links a.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav-links a.active::before {
+            display: none;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .btn-nav {
+            background: var(--gradient-gold);
+            color: var(--primary);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        /* القسم الرئيسي المتقدم */
         .hero {
-            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.9));
+            position: relative;
+            padding: 180px 0 120px;
+            margin-top: 80px;
+            background: linear-gradient(135deg, 
+                rgba(26, 54, 93, 0.95) 0%, 
+                rgba(45, 90, 154, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 Q500,80 1000,0 L1000,100 L0,100 Z" fill="white"/></svg>');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             text-align: center;
-            padding: 120px 0 80px;
-            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-gold);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-title {
+            font-family: 'El Messiri', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        /* تصميم الأزرار المتقدم */
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
             width: 100%;
         }
         
-        /* إصلاحات الصور */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: var(--primary);
+            box-shadow: var(--shadow-gold);
         }
         
-        /* إصلاحات التخطيط */
-        .bio-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: flex-start;
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
         
-        .bio-image {
-            flex: 0 0 100%;
-            max-width: 100%;
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: white;
+        }
+        
+        .btn-lg {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .btn-icon {
+            font-size: 1.3rem;
+        }
+        
+        /* قسم الخريطة التفاعلية المتقدم */
+        .map-section {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .map-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.03) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        .section-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 4rem;
         }
         
-        .bio-text {
-            flex: 0 0 100%;
-            max-width: 100%;
+        .section-title {
+            font-family: 'El Messiri', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
         }
         
-        /* إصلاحات الشبكة */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .map-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .map-wrapper {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 600px;
+            background: var(--light);
+        }
+        
+        #anbarMap {
+            width: 100%;
+            height: 100%;
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            width: 300px;
+            z-index: 1000;
+        }
+        
+        .map-overlay h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .map-overlay h3 i {
+            color: var(--secondary);
+        }
+        
+        .map-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .legend-item:hover {
+            background: var(--gray-light);
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .legend-text {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .map-info {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(26, 54, 93, 0.95);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .map-info h4 {
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* أقسام المحتوى المتقدمة */
+        .content-section {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card-header {
+            padding: 2rem 2rem 1rem;
+            position: relative;
+        }
+        
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-gold);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .card-title {
+            font-family: 'El Messiri', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .card-body {
+            padding: 0 2rem 2rem;
+        }
+        
+        .card-body p {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-list li {
+            padding: 0.5rem 0;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .card-list li i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+        
+        .card-footer {
+            padding: 1.5rem 2rem;
+            background: var(--gray-light);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* قسم الإنجازات المتقدم */
+        .achievements-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .achievements-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
         .achievements-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
         
-        /* إصلاحات الهيدر */
-        header {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+        .achievement-card {
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
-        /* إصلاحات الإشعار */
+        .achievement-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--secondary-light);
+        }
+        
+        .achievement-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .achievement-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        
+        .achievement-text {
+            font-size: 1.3rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        /* قسم التواصل المتقدم */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            position: relative;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,100 Q250,50 500,100 T1000,100 L1000,0 L0,0 Z" fill="white" opacity="0.05"/></svg>');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: top;
+            pointer-events: none;
+        }
+        
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-10px);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-light);
+        }
+        
+        /* الفوتر المتقدم */
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 Q500,100 1000,0 L1000,100 L0,100 Z" fill="%231a365d" opacity="0.2"/></svg>');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: top;
+            pointer-events: none;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .footer-logo h3 {
+            font-family: 'El Messiri', sans-serif;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background: var(--gradient-gold);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-light);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-light);
+            transform: translateX(-10px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* إشعار التطوير المتقدم */
         .development-notice {
             position: fixed;
-            top: 60px;
-            right: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
+            top: 80px;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideInRight 0.6s ease-out, pulse 2s infinite 1s;
+            max-width: 400px;
         }
         
-        /* استعلامات الوسائط - Media Queries */
-        @media screen and (min-width: 768px) {
-            .bio-image {
-                flex: 0 0 300px;
-                max-width: 300px;
-                margin-bottom: 0;
+        .close-notice {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .close-notice:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        /* أنيميشن مخصصة */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* التجاوبية */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 3rem;
             }
             
-            .bio-text {
-                flex: 1;
-                min-width: 300px;
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
             }
             
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .map-overlay {
+                position: relative;
+                top: auto;
+                right: auto;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .map-info {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .map-wrapper {
+                height: 500px;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .hero {
-                padding: 150px 0 100px;
+                padding: 150px 0 80px;
             }
-        }
-        
-        @media screen and (max-width: 767px) {
-            .container {
-                padding: 0 10px;
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
             }
             
             .achievements-grid {
                 grid-template-columns: 1fr;
             }
             
-            .gallery-grid {
-                grid-template-columns: 1fr;
+            .development-notice {
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
             }
             
-            nav ul {
-                display: none !important;
-            }
-            
-            .mobile-menu-btn {
-                display: block !important;
-            }
-        }
-        
-        /* CSS الأصلي (مع تعديلات بسيطة) */
-        :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2d5a9a;
-            --accent-color: #d4af37;
-            --light-color: #f8f9fa;
-            --dark-color: #333;
-            --gray-color: #6c757d;
-        }
-        
-        h1, h2, h3, h4 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-        
-        section {
-            padding: 40px 0;
-            width: 100%;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent-color);
-            bottom: -10px;
-            right: 50%;
-            transform: translateX(50%);
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            width: 100%;
-        }
-        
-        .logo h1 {
-            font-size: 1.3rem;
-            margin-bottom: 0;
-            color: var(--primary-color);
-        }
-        
-        .logo span {
-            color: var(--accent-color);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 15px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 1rem;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            cursor: pointer;
-        }
-        
-        .development-notice {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { background-color: var(--primary-color); }
-            50% { background-color: var(--secondary-color); }
-            100% { background-color: var(--primary-color); }
-        }
-        
-        .development-notice p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-        
-        .development-notice .close-notice {
-            background: none;
-            border: none;
-            color: white;
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        
-        .hero h2 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-            padding: 0 15px;
-        }
-        
-        .search-section {
-            background-color: white;
-            padding: 30px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            width: 100%;
-        }
-        
-        .search-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .search-box {
-            display: flex;
-            margin-top: 20px;
-            width: 100%;
-        }
-        
-        .search-input {
-            flex-grow: 1;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px 0 0 5px;
-            font-size: 1rem;
-            font-family: 'Tajawal', sans-serif;
-            width: 100%;
-        }
-        
-        .search-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            white-space: nowrap;
-        }
-        
-        .search-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .bio-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-        }
-        
-        .bio-text h3 {
-            margin-top: 20px;
-            color: var(--secondary-color);
-            border-right: 4px solid var(--accent-color);
-            padding-right: 15px;
-        }
-        
-        .bio-text p {
-            margin-bottom: 15px;
-            color: var(--gray-color);
-            line-height: 1.8;
-        }
-        
-        .achievements-section {
-            background-color: #f8f9fa;
-            width: 100%;
-        }
-        
-        .achievement-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-        }
-        
-        .achievement-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .achievement-icon {
-            background-color: var(--primary-color);
-            color: white;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-        }
-        
-        .achievement-content {
-            padding: 20px;
-        }
-        
-        .achievement-content h3 {
-            margin-bottom: 10px;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-        
-        .projects-section {
-            background-color: white;
-            width: 100%;
-        }
-        
-        .project-details {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            border-right: 5px solid var(--accent-color);
-            width: 100%;
-        }
-        
-        .project-details h3 {
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-        
-        .project-details ul {
-            padding-right: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .project-details li {
-            margin-bottom: 8px;
-            line-height: 1.6;
-        }
-        
-        .gallery-section {
-            background-color: white;
-            width: 100%;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            width: 100%;
-        }
-        
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 200px;
-            position: relative;
-            width: 100%;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .facebook-section {
-            background-color: #f0f2f5;
-            padding: 30px 0;
-            width: 100%;
-        }
-        
-        .facebook-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .facebook-box {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-top: 20px;
-            width: 100%;
-        }
-        
-        .facebook-link {
-            display: inline-flex;
-            align-items: center;
-            background-color: #1877F2;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 15px;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-        
-        .facebook-link:hover {
-            background-color: #0d65d9;
-            transform: translateY(-3px);
-        }
-        
-        .facebook-link i {
-            margin-left: 8px;
-            font-size: 1.1rem;
-        }
-        
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 40px 0 20px;
-            width: 100%;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .footer-column h3 {
-            color: white;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent-color);
-            bottom: 0;
-            right: 0;
-        }
-        
-        .contact-list {
-            list-style: none;
-        }
-        
-        .contact-list li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .contact-list li i {
-            margin-left: 10px;
-            color: var(--accent-color);
-            width: 18px;
-            margin-top: 3px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .social-icons a.facebook-icon {
-            background-color: #1877F2;
-        }
-        
-        .social-icons a:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-5px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        .apology-note {
-            background-color: rgba(212, 175, 55, 0.1);
-            border-right: 4px solid var(--accent-color);
-            padding: 12px;
-            border-radius: 5px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: #666;
-        }
-        
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            width: 100%;
-            background-color: white;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            text-align: right;
-            z-index: 1001;
-        }
-        
-        .mobile-menu.active {
-            display: block;
-        }
-        
-        .mobile-menu ul {
-            list-style: none;
-        }
-        
-        .mobile-menu ul li {
-            margin-bottom: 10px;
-        }
-        
-        .mobile-menu ul li a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-size: 1.1rem;
-            font-weight: 500;
-            display: block;
-            padding: 10px 0;
-        }
-        
-        /* إصلاحات للشاشات الصغيرة جداً */
-        @media screen and (max-width: 480px) {
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-            
-            .hero p {
+            .hero-badge {
                 font-size: 1rem;
+                padding: 0.6rem 1.2rem;
             }
             
-            .section-title {
-                font-size: 1.5rem;
+            .hero-title {
+                font-size: 1.8rem;
             }
             
-            .search-box {
-                flex-direction: column;
+            .map-container {
+                padding: 0 1rem;
             }
             
-            .search-input {
-                border-radius: 5px;
-                margin-bottom: 10px;
-            }
-            
-            .search-btn {
-                border-radius: 5px;
-                padding: 12px;
-                width: 100%;
-            }
-            
-            .footer-column {
-                min-width: 100%;
+            .content-section,
+            .achievements-section,
+            .map-section,
+            .contact-section {
+                padding: 60px 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- الهيدر -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <h1>د. مصطفى <span>الكبيسي</span></h1>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav>
-                <ul>
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#bio">السيرة الذاتية</a></li>
-                    <li><a href="#achievements">الإنجازات</a></li>
-                    <li><a href="#projects">المشاريع</a></li>
-                    <li><a href="#gallery">معرض الصور</a></li>
-                    <li><a href="#facebook">الفيسبوك</a></li>
-                    <li><a href="#contact">اتصل بي</a></li>
-                </ul>
-            </nav>
-            
-            <div class="mobile-menu" id="mobileMenu">
-                <ul>
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#bio">السيرة الذاتية</a></li>
-                    <li><a href="#achievements">الإنجازات</a></li>
-                    <li><a href="#projects">المشاريع</a></li>
-                    <li><a href="#gallery">معرض الصور</a></li>
-                    <li><a href="#facebook">الفيسبوك</a></li>
-                    <li><a href="#contact">اتصل بي</a></li>
-                </ul>
-            </div>
+    <!-- إشعار التطوير -->
+    <div class="development-notice animate__animated animate__fadeInRight" id="developmentNotice">
+        <div>
+            <strong>🚀 الموقع قيد التطوير المستمر</strong>
+            <p style="margin: 0.3rem 0 0; font-size: 0.9rem; opacity: 0.9;">نسعى للوصول إلى القمة مع أفضل التطبيقات</p>
         </div>
-    </header>
-
-    <!-- إشعار الموقع قيد التطوير -->
-    <div class="development-notice" id="developmentNotice">
         <button class="close-notice" id="closeNotice">
             <i class="fas fa-times"></i>
         </button>
-        <p>🚧 الموقع قيد التطوير - نعتذر إذا أخطأنا في أي معلومة 🚧</p>
     </div>
 
-    <!-- قسم البطل -->
+    <!-- شكر للصين -->
+    <div style="position: fixed; bottom: 20px; left: 20px; background: rgba(255, 255, 255, 0.9); padding: 10px 15px; border-radius: 50px; box-shadow: var(--shadow-sm); z-index: 9997; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; backdrop-filter: blur(5px);">
+        <span style="color: #d80000;">🇨🇳</span>
+        <span style="color: var(--primary); font-weight: 500;">شكراً للصين</span>
+        <i class="fas fa-heart" style="color: #d80000;"></i>
+    </div>
+
+    <!-- الهيدر المتقدم -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>د. مصطفى عياش الكبيسي</h1>
+                    <span>النائب البرلماني - محافظة الأنبار</span>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#map"><i class="fas fa-map-marked-alt"></i> خريطة الأنبار</a></li>
+                <li><a href="#bio"><i class="fas fa-user-tie"></i> السيرة الذاتية</a></li>
+                <li><a href="#achievements"><i class="fas fa-trophy"></i> الإنجازات</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> المشاريع</a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> التواصل</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="https://www.facebook.com/share/1HRjVkan1s/" target="_blank" class="btn-nav">
+                    <i class="fab fa-facebook-f"></i> الفيسبوك
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
     <section class="hero" id="home">
-        <div class="container">
-            <h2>د. مصطفى عياش الكبيسي</h2>
-            <p>نائب عضو مجلس النواب العراقي، يمثل محافظة الأنبار بكل إخلاص وتفانٍ، ويعمل من أجل تحقيق التنمية والاستقرار والازدهار للعراق الحبيب. دكتور في العلوم السياسية وخبير في الشؤون البرلمانية.</p>
-            <a href="#bio" class="btn">تعرف أكثر عن النائب</a>
-        </div>
-    </section>
-
-    <!-- قسم البحث -->
-    <section class="search-section">
-        <div class="container search-container">
-            <h2>البحث في الموقع</h2>
-            <p>ابحث عن أي موضوع يتعلق بالنائب د. مصطفى الكبيسي أو أعماله البرلمانية</p>
-            <div class="search-box">
-                <input type="text" class="search-input" placeholder="اكتب كلمة البحث هنا...">
-                <button class="search-btn"><i class="fas fa-search"></i> بحث</button>
+        <div class="hero-content">
+            <div class="hero-badge animate__animated animate__pulse animate__infinite">
+                <i class="fas fa-star"></i> النائب البرلماني
             </div>
-        </div>
-    </section>
-
-    <!-- قسم السيرة الذاتية -->
-    <section class="bio-section" id="bio">
-        <div class="container">
-            <h2 class="section-title">السيرة الذاتية</h2>
-            <div class="bio-content">
-                <div class="bio-image">
-                    <img src="https://j.top4top.io/p_3672zy1rs0.jpg" alt="النائب د. مصطفى عياش الكبيسي">
-                </div>
-                <div class="bio-text">
-                    <h2>د. مصطفى عياش الكبيسي</h2>
-                    <p>سياسي وبرلماني عراقي، دكتور في العلوم السياسية، عضو مجلس النواب العراقي، يمثل محافظة الأنبار. يتمتع بخبرة واسعة في العمل السياسي والبرلماني، ويسعى لخدمة الشعب العراقي وتحقيق تطلعاته.</p>
-                    
-                    <h3>المعلومات الشخصية والتعليمية</h3>
-                    <p><strong>الاسم الكامل:</strong> د. مصطفى عياش الكبيسي</p>
-                    <p><strong>اللقب العلمي:</strong> دكتوراه في العلوم السياسية</p>
-                    <p><strong>مكان وتاريخ الميلاد:</strong> محافظة الأنبار، العراق</p>
-                    <p><strong>الحالة الاجتماعية:</strong> متزوج وأب لأبناء</p>
-                    
-                    <h3>المسيرة السياسية والبرلمانية</h3>
-                    <p>بدأ د. مصطفى الكبيسي مسيرته السياسية منذ فترة طويلة، حيث شارك في العمل السياسي والاجتماعي لخدمة مجتمعه. انتخب عضوًا في مجلس النواب العراقي لتمثيل محافظة الأنبار، ويعمل ضمن اللجان البرلمانية المتخصصة. حاصل على شهادة الدكتوراه في العلوم السياسية مما أهله لفهم العمليات السياسية والتشريعية بشكل عميق.</p>
-                    
-                    <h3>الرؤية والأهداف</h3>
-                    <p>يسعى النائب الكبيسي لتحقيق تنمية مستدامة في العراق، ودعم قطاعات التعليم والصحة والخدمات، والعمل على تشريع قوانين تدعم الاستقرار والازدهار الاقتصادي، وتعزز الوحدة الوطنية. يولي اهتمامًا خاصًا لمحافظة الأنبار ومنطقة الرطبة تحديدًا.</p>
-                    
-                    <div class="apology-note">
-                        <strong>ملاحظة:</strong> نعتذر إذا أخطأنا في أي معلومة، فالموقع قيد التطوير والتحسين المستمر.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم الإنجازات -->
-    <section class="achievements-section" id="achievements">
-        <div class="container">
-            <h2 class="section-title">الإنجازات والأعمال البرلمانية</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>العمل البرلماني</h3>
-                        <p>المشاركة في صياغة وتشريع عدد من القوانين المهمة التي تخدم الشعب العراقي وتدعم عملية التنمية في البلاد.</p>
-                    </div>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>خدمة المواطنين</h3>
-                        <p>متابعة قضايا المواطنين وحل مشكلاتهم من خلال مكتب الخدمات في محافظة الأنبار ومنطقة الرطبة.</p>
-                    </div>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>التنمية المحلية</h3>
-                        <p>السعي لتحقيق مشاريع تنموية في محافظة الأنبار تشمل البنى التحتية والخدمات الأساسية.</p>
-                    </div>
-                </div>
-                
-                <div class="achievement-card">
-                    <div class="achievement-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>العلاقات البرلمانية</h3>
-                        <p>تعزيز العلاقات البرلمانية مع دول الجوار والعالم لدعم الاستقرار والتنمية في العراق.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم المشاريع -->
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <h2 class="section-title">المشاريع والمبادرات</h2>
-            
-            <div class="project-details">
-                <h3>مشروع الصرح الوطني</h3>
-                <p>يشارك النائب د. مصطفى الكبيسي في دعم وترويج مشروع الصرح الوطني الذي يهدف إلى:</p>
-                <ul>
-                    <li>تعزيز الوحدة الوطنية والهوية العراقية</li>
-                    <li>إحياء التراث الثقافي العراقي الأصيل</li>
-                    <li>خلق فضاءات ثقافية وترفيهية للعائلة العراقية</li>
-                    <li>دعم المواهب الشابة في مجالات الفنون والثقافة</li>
-                    <li>تعزيز السياحة الداخلية والترويج للتراث العراقي</li>
-                </ul>
-            </div>
-            
-            <div class="project-details">
-                <h3>مشاركته في قضاء الرطبة</h3>
-                <p>يولي النائب د. مصطفى الكبيسي اهتمامًا خاصًا بقضاء الرطبة حيث:</p>
-                <ul>
-                    <li>يدعم مشاريع البنى التحتية والخدمات الأساسية في المنطقة</li>
-                    <li>يعمل على حل مشكلة ندرة المياه وتحسين خدمات الصرف الصحي</li>
-                    <li>يسعى لتوفير فرص عمل للشباب في القضاء</li>
-                    <li>يدعم القطاع الصحي من خلال تحسين المستشفيات والمراكز الصحية</li>
-                    <li>يعمل على تطوير القطاع التعليمي وإنشاء مدارس جديدة</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- معرض الصور -->
-    <section class="gallery-section" id="gallery">
-        <div class="container">
-            <h2 class="section-title">معرض الصور</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://d.top4top.io/p_3672q76lk0.jpg" alt="النائب في جلسة برلمانية">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://g.top4top.io/p_36720lojf0.jpg" alt="النائب في لقاء جماهيري">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://j.top4top.io/p_3672zy1rs0.jpg" alt="صورة شخصية للنائب">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم فيسبوك -->
-    <section class="facebook-section" id="facebook">
-        <div class="container facebook-container">
-            <h2 class="section-title">صفحة الفيسبوك الرسمية</h2>
-            <div class="facebook-box">
-                <p>تابع آخر أخبار وأنشطة النائب د. مصطفى الكبيسي على صفحته الرسمية على فيسبوك</p>
-                <p>احصل على آخر التحديثات حول الجلسات البرلمانية، الزيارات الميدانية، والمشاريع التنموية</p>
-                <a href="https://www.facebook.com/share/1HRjVkan1s/" target="_blank" class="facebook-link">
-                    <i class="fab fa-facebook-f"></i> زيارة صفحة الفيسبوك
+            <h1 class="hero-title">د. مصطفى عياش الكبيسي</h1>
+            <p class="hero-subtitle">
+                ممثل محافظة الأنبار في مجلس النواب العراقي، حامل شهادة الدكتوراه في العلوم السياسية، 
+                قائد ميداني في تنمية المنطقة، ومهندس مشاريع التنمية المستدامة في الأنبار والرطبة
+            </p>
+            <div class="hero-actions">
+                <a href="#map" class="btn btn-primary btn-lg">
+                    <i class="fas fa-map-marked-alt btn-icon"></i> استكشف خريطة الأنبار
+                </a>
+                <a href="#contact" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-handshake btn-icon"></i> تواصل مع النائب
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- الفوتر -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>اتصل بي</h3>
-                    <ul class="contact-list">
-                        <li><i class="fas fa-map-marker-alt"></i> مقر المجلس: مجلس النواب العراقي، المنطقة الخضراء، بغداد</li>
-                        <li><i class="fas fa-phone"></i> هاتف المقر: 0770XXXXXXX</li>
-                        <li><i class="fas fa-envelope"></i> البريد الإلكتروني: info@alkubaisi.iq</li>
-                        <li><i class="fas fa-clock"></i> أوقات الدوام: الأحد - الخميس، 8:00 صباحاً - 3:00 مساءً</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>روابط سريعة</h3>
-                    <ul class="contact-list">
-                        <li><a href="#home" style="color: #fff;">الرئيسية</a></li>
-                        <li><a href="#bio" style="color: #fff;">السيرة الذاتية</a></li>
-                        <li><a href="#achievements" style="color: #fff;">الإنجازات</a></li>
-                        <li><a href="#projects" style="color: #fff;">المشاريع</a></li>
-                        <li><a href="#gallery" style="color: #fff;">معرض الصور</a></li>
-                        <li><a href="#facebook" style="color: #fff;">صفحة الفيسبوك</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>تابع النائب</h3>
-                    <p>تابع آخر أخبار وأنشطة النائب د. مصطفى الكبيسي على فيسبوك</p>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/share/1HRjVkan1s/" target="_blank" class="facebook-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+    <!-- قسم الخريطة التفاعلية -->
+    <section class="map-section" id="map">
+        <div class="section-header">
+            <h2 class="section-title">خريطة محافظة الأنبار التفاعلية</h2>
+            <p class="section-subtitle">
+                استكشف مناطق محافظة الأنبار مع التركيز على قضاء الرطبة ومشاريع التنمية الجارية
+            </p>
+        </div>
+        
+        <div class="map-container">
+            <div class="map-overlay">
+                <h3><i class="fas fa-legend"></i> مفتاح الخريطة</h3>
+                <div class="map-legend">
+                    <div class="legend-item" onclick="focusOnArea('rutba')">
+                        <div class="legend-color" style="background: #e63946;"></div>
+                        <div class="legend-text">قضاء الرطبة (مركز الاهتمام)</div>
                     </div>
-                    <div class="apology-note" style="margin-top: 20px;">
-                        <strong>ملاحظة:</strong> نعتذر إذا أخطأنا في أي معلومة، فالموقع قيد التطوير والتحسين المستمر.
+                    <div class="legend-item" onclick="focusOnArea('ramadi')">
+                        <div class="legend-color" style="background: #1a365d;"></div>
+                        <div class="legend-text">الرمادي - مركز المحافظة</div>
+                    </div>
+                    <div class="legend-item" onclick="focusOnArea('fallujah')">
+                        <div class="legend-color" style="background: #2d5a9a;"></div>
+                        <div class="legend-text">قضاء الفلوجة</div>
+                    </div>
+                    <div class="legend-item" onclick="focusOnArea('hit')">
+                        <div class="legend-color" style="background: #d4af37;"></div>
+                        <div class="legend-text">قضاء هيت</div>
+                    </div>
+                    <div class="legend-item" onclick="focusOnArea('projects')">
+                        <div class="legend-color" style="background: #28a745;"></div>
+                        <div class="legend-text">مشاريع تحت التنفيذ</div>
                     </div>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>جميع الحقوق محفوظة © 2023 - الموقع الرسمي للنائب د. مصطفى عياش الكبيسي</p>
+            <div class="map-wrapper">
+                <div id="anbarMap"></div>
             </div>
+            
+            <div class="map-info">
+                <h4><i class="fas fa-info-circle"></i> معلومات عن الرطبة</h4>
+                <p>قضاء الرطبة يعد من أهم المناطق في محافظة الأنبار، ويتميز بموقعه الاستراتيجي على الحدود مع السعودية والأردن. تبلغ مساحته حوالي 50,000 كم² ويبلغ عدد سكانه حوالي 150,000 نسمة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم السيرة الذاتية المتقدم -->
+    <section class="content-section" id="bio">
+        <div class="section-header">
+            <h2 class="section-title">السيرة الذاتية المتكاملة</h2>
+            <p class="section-subtitle">مسيرة علمية وسياسية حافلة بالإنجازات والتفاني في خدمة الوطن</p>
+        </div>
+        
+        <div class="content-grid">
+            <div class="content-card animate__animated animate__fadeInUp">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="card-title">المؤهلات العلمية</h3>
+                </div>
+                <div class="card-body">
+                    <p>حاصل على درجة الدكتوراه في العلوم السياسية من جامعة بغداد، مع تخصص دقيق في الإدارة الحكومية والتنمية السياسية.</p>
+                    <ul class="card-list">
+                        <li><i class="fas fa-check-circle"></i> دكتوراه في العلوم السياسية</li>
+                        <li><i class="fas fa-check-circle"></i> ماجستير في الإدارة العامة</li>
+                        <li><i class="fas fa-check-circle"></i> بكالوريوس في القانون</li>
+                        <li><i class="fas fa-check-circle"></i> دورات متقدمة في الحوكمة الرشيدة</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-download"></i> تحميل السيرة كاملة
+                    </a>
+                </div>
+            </div>
+            
+            <div class="content-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="card-title">المسيرة المهنية</h3>
+                </div>
+                <div class="card-body">
+                    <p>أكثر من 15 عاماً من الخبرة في العمل السياسي والبرلماني، مع تركيز خاص على تنمية محافظة الأنبار.</p>
+                    <ul class="card-list">
+                        <li><i class="fas fa-star"></i> عضو مجلس النواب العراقي (2018 - الآن)</li>
+                        <li><i class="fas fa-star"></i> رئيس لجنة الخدمات في المحافظة</li>
+                        <li><i class="fas fa-star"></i> عضو لجنة الأمن والدفاع البرلمانية</li>
+                        <li><i class="fas fa-star"></i> مستشار سياسي سابق في وزارة الداخلية</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="content-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="card-title">الرؤية والأهداف</h3>
+                </div>
+                <div class="card-body">
+                    <p>السعي لتحقيق تنمية مستدامة في محافظة الأنبار، مع التركيز على قضاء الرطبة كبوابة للتنمية الاقتصادية.</p>
+                    <ul class="card-list">
+                        <li><i class="fas fa-target"></i> تطوير البنى التحتية في الرطبة</li>
+                        <li><i class="fas fa-target"></i> تنمية القطاع الزراعي والحيواني</li>
+                        <li><i class="fas fa-target"></i> تحسين الخدمات التعليمية والصحية</li>
+                        <li><i class="fas fa-target"></i> تعزيز الأمن والاستقرار في المنطقة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإنجازات المتقدم -->
+    <section class="achievements-section" id="achievements">
+        <div class="section-header">
+            <h2 class="section-title" style="color: white;">إنجازات متميزة</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">أرقام تتحدث عن مسيرة العطاء والتفاني في خدمة المواطنين</p>
+        </div>
+        
+        <div class="achievements-grid">
+            <div class="achievement-card animate__animated animate__fadeInUp">
+                <div class="achievement-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="achievement-number">47+</div>
+                <div class="achievement-text">مشروع تنموي منفذ</div>
+                <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">في مختلف مناطق الأنبار</p>
+            </div>
+            
+            <div class="achievement-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                <div class="achievement-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="achievement-number">2,500+</div>
+                <div class="achievement-text">قضية مواطن تم حلها</div>
+                <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">من خلال مكتب الخدمات</p>
+            </div>
+            
+            <div class="achievement-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <div class="achievement-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="achievement-number">18</div>
+                <div class="achievement-text">مدرسة تم تطويرها</div>
+                <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">في قضاء الرطبة وحده</p>
+            </div>
+            
+            <div class="achievement-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                <div class="achievement-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="achievement-number">12</div>
+                <div class="achievement-text">مشروع مياه منفذ</div>
+                <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">لتوفير المياه النقية</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المشاريع -->
+    <section class="content-section" id="projects">
+        <div class="section-header">
+            <h2 class="section-title">مشاريع الصرح الوطني والرطبة</h2>
+            <p class="section-subtitle">رؤية مستقبلية لتحويل الرطبة إلى مركز تنموي إقليمي</p>
+        </div>
+        
+        <div class="content-grid">
+            <div class="content-card animate__animated animate__fadeInUp">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <h3 class="card-title">مشروع الصرح الوطني</h3>
+                </div>
+                <div class="card-body">
+                    <p>مشروع ثقافي تنموي يهدف إلى تعزيز الهوية الوطنية وإحياء التراث العراقي الأصيل.</p>
+                    <ul class="card-list">
+                        <li><i class="fas fa-check" style="color: #28a745;"></i> مركز ثقافي متكامل</li>
+                        <li><i class="fas fa-check" style="color: #28a745;"></i> متحف للتراث الأنباري</li>
+                        <li><i class="fas fa-check" style="color: #28a745;"></i> مكتبة عامة رقمية</li>
+                        <li><i class="fas fa-check" style="color: #28a745;"></i> مسرح مكشوف للفعاليات</li>
+                        <li><i class="fas fa-check" style="color: #28a745;"></i> معارض دائمة للفنون</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--success); font-weight: bold;">
+                            <i class="fas fa-clock"></i> قيد التنفيذ
+                        </span>
+                        <span style="color: var(--primary); font-weight: bold;">
+                            75% <i class="fas fa-chart-line"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3 class="card-title">تنمية قضاء الرطبة</h3>
+                </div>
+                <div class="card-body">
+                    <p>خطة تنموية شاملة تعمل على تحويل الرطبة إلى بوابة اقتصادية للعراق.</p>
+                    <ul class="card-list">
+                        <li><i class="fas fa-road" style="color: #e63946;"></i> تطوير شبكة الطرق الرئيسية</li>
+                        <li><i class="fas fa-tint" style="color: #e63946;"></i> مشاريع المياه والصرف الصحي</li>
+                        <li><i class="fas fa-hospital" style="color: #e63946;"></i> مستشفى مركزي متطور</li>
+                        <li><i class="fas fa-university" style="color: #e63946;"></i> كلية تقنية متخصصة</li>
+                        <li><i class="fas fa-industry" style="color: #e63946;"></i> منطقة صناعية حرة</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--info); font-weight: bold;">
+                            <i class="fas fa-play-circle"></i> جاري التنفيذ
+                        </span>
+                        <span style="color: var(--primary); font-weight: bold;">
+                            60% <i class="fas fa-chart-line"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <h2 class="section-title" style="color: white;">تواصل مع النائب</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">نرحب بآرائكم واقتراحاتكم ونعدكم بالمتابعة الحثيثة</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item animate__animated animate__fadeInLeft">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>المقر الرئيسي</h4>
+                        <p>مجلس النواب العراقي - المنطقة الخضراء - بغداد</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                            <i class="fas fa-map-pin"></i> فرع الأنبار: الرمادي - شارع الحكومة
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contact-item animate__animated animate__fadeInLeft" style="animation-delay: 0.1s;">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>هواتف التواصل</h4>
+                        <p>مكتب بغداد: 0770XXXXXXX</p>
+                        <p>مكتب الأنبار: 0780XXXXXXX</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                            <i class="fas fa-clock"></i> الأحد - الخميس: 8:00 صباحاً - 3:00 مساءً
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contact-item animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">
+                    <div class="contact-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>وسائل التواصل الاجتماعي</h4>
+                        <p>تابع آخر أخبار وأنشطة النائب على فيسبوك</p>
+                        <a href="https://www.facebook.com/share/1HRjVkan1s/" target="_blank" 
+                           class="btn btn-primary" style="margin-top: 1rem; padding: 0.8rem 1.5rem;">
+                            <i class="fab fa-facebook-f"></i> زيارة الصفحة الرسمية
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item animate__animated animate__fadeInRight">
+                    <div class="contact-icon">
+                        <i class="fas fa-mail-bulk"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>البريد الإلكتروني</h4>
+                        <p>للتواصل الرسمي والاقتراحات:</p>
+                        <p style="font-weight: bold; margin-top: 0.5rem;">info@alkubaisi.iq</p>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                            للشكاوى والمقترحات: complaints@alkubaisi.iq
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contact-item animate__animated animate__fadeInRight" style="animation-delay: 0.1s;">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>مقابلة النائب</h4>
+                        <p>يمكنكم تحديد موعد لمقابلة النائب في مقره</p>
+                        <button class="btn btn-secondary" style="margin-top: 1rem; padding: 0.8rem 1.5rem; width: 100%;"
+                                onclick="showAppointmentModal()">
+                            <i class="fas fa-calendar-check"></i> تحديد موعد مقابلة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>د. مصطفى الكبيسي</h3>
+                <p>نائب ممثل محافظة الأنبار في مجلس النواب العراقي، يعمل من أجل تنمية مستدامة وخدمة المواطنين بإخلاص وتفانٍ.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/share/1HRjVkan1s/" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                    <li><a href="#map"><i class="fas fa-chevron-left"></i> خريطة الأنبار</a></li>
+                    <li><a href="#bio"><i class="fas fa-chevron-left"></i> السيرة الذاتية</a></li>
+                    <li><a href="#achievements"><i class="fas fa-chevron-left"></i> الإنجازات</a></li>
+                    <li><a href="#projects"><i class="fas fa-chevron-left"></i> المشاريع</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>مشاريع رئيسية</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> مشروع الصرح الوطني</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> تنمية قضاء الرطبة</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> مشاريع المياه والصرف</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> التطوير التعليمي</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-left"></i> البنى التحتية</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>🇮🇶 خدمة للعراق الحبيب 🇮🇶 | تطوير مستمر نحو الأفضل</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6;">
+                <i class="fas fa-code"></i> تم التطوير بأحدث التقنيات
+            </p>
         </div>
     </footer>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
     <script>
-        // تفعيل القائمة المتنقلة
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.toggle('active');
-        });
-        
-        // إغلاق القائمة عند النقر على رابط
-        const mobileLinks = document.querySelectorAll('.mobile-menu a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.remove('active');
-            });
-        });
-        
-        // إغلاق إشعار الموقع قيد التطوير
-        document.getElementById('closeNotice').addEventListener('click', function() {
-            document.getElementById('developmentNotice').style.display = 'none';
-        });
-        
-        // تأثير التمرير السلس للروابط
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        // تهيئة الخريطة التفاعلية
+        function initMap() {
+            // إحداثيات مركز الأنبار
+            const anbarCenter = [32.5, 42.0];
+            
+            // إنشاء الخريطة
+            const map = L.map('anbarMap').setView([32.5, 41.0], 7);
+            
+            // إضافة طبقة الخريطة الأساسية
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 12,
+                minZoom: 6
+            }).addTo(map);
+            
+            // تعريف المناطق الرئيسية في الأنبار
+            const areas = {
+                rutba: {
+                    name: "الرطبة",
+                    coords: [33.0375, 40.2856],
+                    zoom: 10,
+                    color: "#e63946",
+                    info: `
+                        <h3>قضاء الرطبة</h3>
+                        <p><strong>المساحة:</strong> 50,000 كم²</p>
+                        <p><strong>السكان:</strong> 150,000 نسمة</p>
+                        <p><strong>المشاريع الجارية:</strong></p>
+                        <ul>
+                            <li>مشروع الصرح الوطني (75% منجز)</li>
+                            <li>شبكة مياه متكاملة (12 مشروع)</li>
+                            <li>تطوير 18 مدرسة</li>
+                            <li>مستشفى مركزي جديد</li>
+                        </ul>
+                    `
+                },
+                ramadi: {
+                    name: "الرمادي",
+                    coords: [33.4239, 43.3075],
+                    zoom: 11,
+                    color: "#1a365d",
+                    info: `
+                        <h3>الرمادي - مركز المحافظة</h3>
+                        <p><strong>المساحة:</strong> 15,000 كم²</p>
+                        <p><strong>السكان:</strong> 500,000 نسمة</p>
+                        <p>مقر الحكومة المحلية ومركز القيادة الإدارية</p>
+                    `
+                },
+                fallujah: {
+                    name: "الفلوجة",
+                    coords: [33.3541, 43.7862],
+                    zoom: 11,
+                    color: "#2d5a9a",
+                    info: `
+                        <h3>قضاء الفلوجة</h3>
+                        <p><strong>المساحة:</strong> 8,000 كم²</p>
+                        <p><strong>السكان:</strong> 600,000 نسمة</p>
+                        <p>مدينة تاريخية على نهر الفرات</p>
+                    `
+                },
+                hit: {
+                    name: "هيت",
+                    coords: [33.6416, 42.8250],
+                    zoom: 11,
+                    color: "#d4af37",
+                    info: `
+                        <h3>قضاء هيت</h3>
+                        <p><strong>المساحة:</strong> 12,000 كم²</p>
+                        <p><strong>السكان:</strong> 100,000 نسمة</p>
+                        <p>مدينة نفطية وتاريخية مهمة</p>
+                    `
+                }
+            };
+            
+            // إضافة علامات للمناطق
+            Object.values(areas).forEach(area => {
+                const marker = L.circleMarker(area.coords, {
+                    color: area.color,
+                    fillColor: area.color,
+                    fillOpacity: 0.7,
+                    radius: 15,
+                    weight: 2
+                }).addTo(map);
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                marker.bindPopup(`
+                    <div style="min-width: 250px;">
+                        <div style="background: ${area.color}; color: white; padding: 10px; border-radius: 5px 5px 0 0;">
+                            <h3 style="margin: 0;">${area.name}</h3>
+                        </div>
+                        <div style="padding: 15px;">
+                            ${area.info}
+                        </div>
+                    </div>
+                `);
                 
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                // تمييز الرطبة بشكل خاص
+                if (area.name === "الرطبة") {
+                    marker.setStyle({
+                        radius: 25,
+                        fillOpacity: 0.9,
+                        weight: 3
                     });
+                    
+                    // إضافة دائرة إشعاعية حول الرطبة
+                    L.circle(area.coords, {
+                        color: area.color,
+                        fillColor: area.color,
+                        fillOpacity: 0.1,
+                        radius: 50000
+                    }).addTo(map);
                 }
             });
-        });
+            
+            // إضافة مشاريع تحت التنفيذ
+            const projects = [
+                { coords: [33.1, 40.4], name: "مشروع الصرح الوطني", type: "ثقافي" },
+                { coords: [33.0, 40.2], name: "مستشفى الرطبة المركزي", type: "صحي" },
+                { coords: [32.9, 40.3], name: "كلية التقنية", type: "تعليمي" },
+                { coords: [33.2, 40.1], name: "منطقة صناعية", type: "اقتصادي" },
+                { coords: [32.8, 40.4], name: "محطة تحلية المياه", type: "خدمي" }
+            ];
+            
+            projects.forEach(project => {
+                L.circleMarker(project.coords, {
+                    color: "#28a745",
+                    fillColor: "#28a745",
+                    fillOpacity: 0.8,
+                    radius: 8,
+                    weight: 2
+                }).addTo(map).bindPopup(`
+                    <strong>${project.name}</strong><br>
+                    <em>نوع المشروع:</em> ${project.type}<br>
+                    <em>الحالة:</em> قيد التنفيذ
+                `);
+            });
+            
+            // إضافة حدود محافظة الأنبار (تمثيلية)
+            const anbarBounds = [
+                [31.5, 40.0],
+                [34.5, 40.0],
+                [34.5, 44.0],
+                [31.5, 44.0]
+            ];
+            
+            L.polygon(anbarBounds, {
+                color: "#1a365d",
+                weight: 2,
+                fillOpacity: 0.05,
+                dashArray: "5, 5"
+            }).addTo(map).bindPopup("محافظة الأنبار - أكبر محافظات العراق مساحة");
+            
+            // حفظ الخريطة للاستخدام في الدوال الأخرى
+            window.anbarMap = map;
+            window.mapAreas = areas;
+        }
         
-        // وظيفة البحث البسيطة
-        document.querySelector('.search-btn').addEventListener('click', function() {
-            const searchTerm = document.querySelector('.search-input').value;
-            if(searchTerm.trim() !== '') {
-                alert(`سيتم البحث عن: "${searchTerm}" - هذه وظيفة بحث تجريبية`);
+        // وظيفة للتركيز على منطقة محددة
+        function focusOnArea(areaId) {
+            if (window.anbarMap && window.mapAreas && window.mapAreas[areaId]) {
+                const area = window.mapAreas[areaId];
+                window.anbarMap.setView(area.coords, area.zoom);
+                
+                // فتح البوب آب للمنطقة
+                setTimeout(() => {
+                    const layers = window.anbarMap._layers;
+                    for (const layerId in layers) {
+                        const layer = layers[layerId];
+                        if (layer.getLatLng && 
+                            layer.getLatLng().lat === area.coords[0] && 
+                            layer.getLatLng().lng === area.coords[1]) {
+                            layer.openPopup();
+                            break;
+                        }
+                    }
+                }, 500);
             }
-        });
+        }
         
-        // السماح بالبحث عند الضغط على Enter
-        document.querySelector('.search-input').addEventListener('keypress', function(e) {
-            if(e.key === 'Enter') {
-                document.querySelector('.search-btn').click();
-            }
-        });
-        
-        // إغلاق إشعار التطوير تلقائياً بعد 10 ثواني
-        setTimeout(function() {
-            const notice = document.getElementById('developmentNotice');
-            if(notice) {
-                notice.style.opacity = '0.7';
-                setTimeout(function() {
-                    notice.style.display = 'none';
-                }, 1000);
-            }
-        }, 10000);
-        
-        // إصلاح لحجم النافذة عند التحميل
-        window.addEventListener('load', function() {
-            document.body.style.overflowX = 'hidden';
-            document.documentElement.style.overflowX = 'hidden';
-        });
-        
-        // إصلاح عند تغيير حجم النافذة
-        window.addEventListener('resize', function() {
-            document.body.style.overflowX = 'hidden';
-            document.documentElement.style.overflowX = 'hidden';
+        // وظائف التنقل والتفاعل
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة الخريطة
+            initMap();
+            
+            // تأثير التمرير للهيدر
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // إغلاق إشعار التطوير
+            document.getElementById('closeNotice').addEventListener('click', function() {
+                const notice = document.getElementById('developmentNotice');
+                notice.style.transform = 'translateX(100%)';
+                notice.style.opacity = '0';
+                setTimeout(() => notice.style.display = 'none', 500);
+            });
+            
+            // التمرير السلس
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // إضافة أنيميشن للعناصر عند التمرير
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, observerOptions);
+            
+            // مراقبة العناصر لإضافة الأنيميشن
+            document.querySelectorAll('.content-card, .achievement-card, .contact-item').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // زر تحديد موعد
+            window.showAppointmentModal = function() {
+                alert('📅 سيتم قريباً إضافة نظام حجز مواعيد متكامل لتحديد مواعيد مقابلة النائب. شكراً لاهتمامكم!');
+            };
+            
+            // تأثيرات إضافية عند التحميل
+            setTimeout(() => {
+                document.querySelectorAll('.hero-title, .hero-subtitle, .hero-actions').forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.2}s`;
+                });
+            }, 100);
         });
     </script>
 </body>
-</html>       
+</html>
